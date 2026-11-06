@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: entloom-server
+  datasource:
+    url: ${ENTLOOM_DB_URL:jdbc:postgresql://localhost:5432/entloom}
+    username: ${ENTLOOM_DB_USERNAME:entloom}
+    password: ${ENTLOOM_DB_PASSWORD:entloom}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  data:
+    redis:
+      url: ${ENTLOOM_REDIS_URL:redis://localhost:6379}
+  mvc:
+    problemdetails:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+server:
+  port: ${PORT:8080}
+
+entloom:
+  api:
+    version: v1

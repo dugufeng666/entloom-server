@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:18.6
+    environment:
+      POSTGRES_DB: entloom
+      POSTGRES_USER: entloom
+      POSTGRES_PASSWORD: entloom
+    ports:
+      - "5432:5432"
+    volumes:
+      - entloom-postgres:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U entloom -d entloom"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:8.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - entloom-redis:/data
+
+  server:
+    build: .
+    environment:
+      ENTLOOM_DB_URL: jdbc:postgresql://postgres:5432/entloom
+      ENTLOOM_DB_USERNAME: entloom
+      ENTLOOM_DB_PASSWORD: entloom
+      ENTLOOM_REDIS_URL: redis://redis:6379
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+volumes:
+  entloom-postgres:
+  entloom-redis:
