@@ -1,4 +1,10 @@
-# Entloom Server
+# Entloom Server (Moved)
+
+> Development has moved to the public Entloom monorepo: <https://github.com/dugufeng666/entloom>.
+>
+> The current server source is under [`server/`](https://github.com/dugufeng666/entloom/tree/main/server). This repository is kept as a migration marker and historical reference.
+
+<!--
 
 The open-source backend for **Entloom**, an enterprise ontology and agent platform.
 
@@ -87,3 +93,4 @@ Please follow [SECURITY.md](SECURITY.md) for vulnerability reports. Do not open 
 ## License
 
 Entloom Server is licensed under the [Apache License 2.0](LICENSE). The license covers source code. Brand assets, private learning materials, paid IMA content and customer data are not part of this repository.
+-->
